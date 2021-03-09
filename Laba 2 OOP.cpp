@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
-const double pi=3.14;
+const double pi = 3.14;
 
 class Cone {
 private:
-    int *radius, *height;
+    int* radius, * height;
 
 public:
     Cone() {
@@ -15,17 +15,19 @@ public:
     }
 
     Cone(int Radius, int Height) {
-        cout << "Викликаємо конструктор..." << endl;
+        cout << "Викликаємо конструктор з параметрами..." << endl;
         radius = new int;
         height = new int;
         *radius = Radius;
         *height = Height;
     }
 
-    Cone(const Cone &obj) {
-        cout << "Конструктор копіювання..." << endl;
-        this -> radius = obj.radius;
-        this -> height = obj.height;
+    Cone(const Cone& obj) {
+        cout << "Викликаємо конструктор копіювання..." << endl;
+        radius = new int;
+        height = new int;
+        *this->radius = *obj.radius;
+        *this->height = *obj.height;
     }
 
     ~Cone() {
@@ -77,6 +79,7 @@ int main() {
 
     Cone obj1(4, 5);
     cout << "Радіус: " << obj1.GetRadius() << "\tВисота: " << obj1.GetHeight() << endl;
+    cout << "\nВикликаємо некоректні сеттери для перевірки:\n";
     obj1.SetRadius(-1);
     obj1.SetHeight(0);
     obj1.Print();
@@ -84,6 +87,8 @@ int main() {
     cout << "Площа повної поверхні конуса: " << obj1.Area() << "\n\n";
 
     Cone obj2(obj1);
+    obj1.SetRadius(4);
+    obj1.SetHeight(7);
     obj2.Print();
 
     Cone obj3;
@@ -95,6 +100,13 @@ int main() {
     cout << "Об'єм конуса: " << obj3.Volume() << endl;
     cout << "Площа повної поверхні конуса: " << obj3.Area() << endl;
 
-    getchar();getchar();
+    Cone* obj4;
+    obj4 = new Cone;
+    obj4->SetRadius(7);
+    obj4->SetHeight(9);
+    obj4->Print();
+    delete obj4;
+
+    getchar(); getchar();
     return 0;
 }
