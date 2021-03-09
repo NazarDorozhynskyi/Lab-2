@@ -1,6 +1,6 @@
 #include <iostream>
-#include <cmath>
 using namespace std;
+const double pi=3.14;
 
 class Cone {
 private:
@@ -63,12 +63,12 @@ public:
     }
 
     double Volume() {
-        return (M_PI * *radius * *radius * *height) / 3;
+        return (pi * *radius * *radius * *height) / 3;
     }
 
     double Area() {
         double l = sqrt(*height * *height + *radius * *radius); // твірна конуса
-        return M_PI * *radius * (*radius + l); // повна площа поверхні конуса
+        return pi * *radius * (*radius + l); // повна площа поверхні конуса
     }
 };
 
